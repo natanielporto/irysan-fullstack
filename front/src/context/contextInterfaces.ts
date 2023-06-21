@@ -29,6 +29,7 @@ export interface Asteroid {
   id: string;
   name: string;
   name_limited: string;
+  link: { self: string };
   estimated_diameter: {
     kilometers: {
       estimated_diameter_max: number;
@@ -36,6 +37,9 @@ export interface Asteroid {
   };
 }
 
+export interface OrderBy {
+  orderBy: "one" | "many" | "favorite" | "range";
+}
 export interface SyncContextType {
   backgroundImage: ImageOfTheDay;
   allAsteroids: Asteroid[] | [];

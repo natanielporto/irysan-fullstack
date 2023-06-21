@@ -11,7 +11,7 @@ export const Container = styled.button`
   align-items: center;
   padding: 6px 0;
   overflow-y: scroll;
-  overflow: hidden;
+  gap: 6px;
 
   :hover {
     background-color: turquoise;

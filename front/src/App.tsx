@@ -9,7 +9,7 @@ function App() {
   const { url, title, date, copyright, service_version, media_type } =
     backgroundImage;
 
-  return (
+  return url ? (
     <S.Container>
       {backgroundImage && <img src={url} alt={title} />}
       <HeaderControls />
@@ -22,6 +22,8 @@ function App() {
       </S.BottomSpan>
       <S.LeftSpan>Service version: {service_version}</S.LeftSpan>
     </S.Container>
+  ) : (
+    <div>Loading...</div>
   );
 }
 

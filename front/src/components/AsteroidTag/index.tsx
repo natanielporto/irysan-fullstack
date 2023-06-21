@@ -14,12 +14,7 @@ export function AsteroidsTag({
   favorite,
   ...rest
 }: AsteroidTag) {
-  const { allAsteroids } = useContext(SyncContext);
-  console.log(
-    "🚀 ~ file: index.tsx:13 ~ AsteroidsTag ~ allAsteroids:",
-    allAsteroids
-  );
-
+  console.log("🚀 ~ file: index.tsx:17 ~ rest:", rest);
   const [selected, setSelected] = useState<boolean>(false);
 
   return (

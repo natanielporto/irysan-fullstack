@@ -4,6 +4,7 @@ import {
   ImageOfTheDay,
   SyncProviderProps,
   SyncContextType,
+  OrderBy,
 } from "./contextInterfaces";
 
 export const SyncContext = createContext<SyncContextType>(
@@ -16,20 +17,21 @@ export function SyncProvider({ children }: SyncProviderProps) {
   const [backgroundImage, setBackgroundImage] = useState<ImageOfTheDay>(
     {} as ImageOfTheDay
   );
+
   const [asteroidId, setAsteroidId] = useState<string>("");
   const [allAsteroids, setAllAsteroids] = useState<Asteroid[]>([]);
-  console.log(
-    "🚀 ~ file: sync.tsx:21 ~ SyncProvider ~ allAsteroids:",
-    allAsteroids
-  );
+  const [orderBy, setOrderBy] = useState<OrderBy>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleShowAllAsteroids = useCallback(async () => {
     setLoading(true);
+
+    setAllAsteroids([]);
+
     try {
       const response = await fetch(`${server}/list`);
       const data = await response.json();
-      setAllAsteroids(data);
+      setAllAsteroids([data]);
       setLoading(false);
       return data;
     } catch (error) {
@@ -60,6 +62,9 @@ export function SyncProvider({ children }: SyncProviderProps) {
       if (startDate === "" || endDate === "") {
         alert("You must select start and end dates.");
       }
+
+      setAllAsteroids([]);
+
       try {
         setLoading(true);
         const response = await fetch(`${server}/${startDate}/${endDate}`);
@@ -73,7 +78,7 @@ export function SyncProvider({ children }: SyncProviderProps) {
         return [];
       }
     },
-    []
+    [allAsteroids]
   );
 
   useEffect(() => {
