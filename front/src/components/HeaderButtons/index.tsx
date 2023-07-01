@@ -13,6 +13,9 @@ export function HeaderControls() {
   const endDateRef = useRef<HTMLInputElement | null>(null);
   const favoriteRef = useRef<HTMLInputElement | null>(null);
 
+  const handleClick = (a: string) => {
+    console.log(a);
+  };
   return (
     <S.Container>
       <S.Button onClick={() => handleShowAllAsteroids()}>

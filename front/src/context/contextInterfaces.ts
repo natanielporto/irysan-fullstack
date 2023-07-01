@@ -43,8 +43,10 @@ export interface OrderBy {
 export interface SyncContextType {
   backgroundImage: ImageOfTheDay;
   allAsteroids: Asteroid[] | [];
+  pickedAsteroid: Asteroid;
   handleShowAllAsteroids: () => void;
   handleShowOneAsteroid: (id: string | null) => void;
+  handlePickOneAsteroid: (id: string) => void;
   handleShowAsteroidsByDate: ({
     startDate,
     endDate,

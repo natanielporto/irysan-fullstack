@@ -20,6 +20,9 @@ export function SyncProvider({ children }: SyncProviderProps) {
 
   const [asteroidId, setAsteroidId] = useState<string>("");
   const [allAsteroids, setAllAsteroids] = useState<Asteroid[]>([]);
+  const [pickedAsteroid, setPickedAsteroid] = useState<Asteroid>(
+    {} as Asteroid
+  );
   const [orderBy, setOrderBy] = useState<OrderBy>();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -56,6 +59,19 @@ export function SyncProvider({ children }: SyncProviderProps) {
       return [];
     }
   }, []);
+
+  const handlePickOneAsteroid = useCallback(
+    async (id: string | null) => {
+      const selectedAsteroid = Object.entries(allAsteroids[0]).filter(
+        (asteroid) => {
+          return asteroid[1].id === id;
+        }
+      )[0];
+
+      return setPickedAsteroid(selectedAsteroid[1]);
+    },
+    [allAsteroids]
+  );
 
   const handleShowAsteroidsByDate = useCallback(
     async ({ startDate, endDate }: { startDate: string; endDate: string }) => {
@@ -98,9 +114,11 @@ export function SyncProvider({ children }: SyncProviderProps) {
     loading,
     backgroundImage,
     allAsteroids,
+    pickedAsteroid,
     handleShowAllAsteroids,
     handleShowOneAsteroid,
     handleShowAsteroidsByDate,
+    handlePickOneAsteroid,
   };
 
   return <SyncContext.Provider value={data}>{children}</SyncContext.Provider>;

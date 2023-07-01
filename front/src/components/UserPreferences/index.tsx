@@ -1,12 +1,13 @@
+import { useContext } from "react";
+import { SyncContext } from "../../context/sync";
 import * as S from "./styles";
 
 export function UserPreferences() {
+  const { pickedAsteroid } = useContext(SyncContext);
+  console.log(pickedAsteroid);
   return (
     <S.Container>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-      aliquid saepe aut libero voluptate nobis, amet, voluptatem, quae dicta a
-      veritatis illum reiciendis unde similique? Deserunt, praesentium.
-      Officiis, corporis est.
+      {pickedAsteroid && <div>{JSON.stringify(pickedAsteroid)}</div>}
     </S.Container>
   );
 }

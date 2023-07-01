@@ -8,17 +8,17 @@ interface AsteroidTag {
   favorite: boolean;
 }
 
-export function AsteroidsTag({
-  name,
-  description,
-  favorite,
-  ...rest
-}: AsteroidTag) {
-  console.log("🚀 ~ file: index.tsx:17 ~ rest:", rest);
+export function AsteroidsTag(props: any) {
+  const { handlePickOneAsteroid } = useContext(SyncContext);
+  const favorite = true;
   const [selected, setSelected] = useState<boolean>(false);
 
+  const { name, description, id } = props;
   return (
-    <S.Container selected={selected} onClick={() => setSelected(!selected)}>
+    <S.Container
+      selected={selected}
+      onClick={() => [setSelected(!selected), handlePickOneAsteroid(id)]}
+    >
       <div>
         <S.AsteroidNameTag>{name}</S.AsteroidNameTag>
         {favorite && <S.Star>&#9733;</S.Star>}
