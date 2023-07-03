@@ -16,6 +16,7 @@ export function HeaderControls() {
   const handleClick = (a: string) => {
     console.log(a);
   };
+
   return (
     <S.Container>
       <S.Button onClick={() => handleShowAllAsteroids()}>

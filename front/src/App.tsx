@@ -11,7 +11,7 @@ function App() {
 
   return url ? (
     <S.Container>
-      {backgroundImage && <img src={url} alt={title} />}
+      {backgroundImage && <S.BackgroundImage image={url} alt={title} />}
       <HeaderControls />
       <SquareDisplay />
 

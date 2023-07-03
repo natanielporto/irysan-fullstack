@@ -20,9 +20,7 @@ export function SyncProvider({ children }: SyncProviderProps) {
 
   const [asteroidId, setAsteroidId] = useState<string>("");
   const [allAsteroids, setAllAsteroids] = useState<Asteroid[]>([]);
-  const [pickedAsteroid, setPickedAsteroid] = useState<Asteroid>(
-    {} as Asteroid
-  );
+  const [pickedAsteroid, setPickedAsteroid] = useState<Asteroid>();
   const [orderBy, setOrderBy] = useState<OrderBy>();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -62,13 +60,17 @@ export function SyncProvider({ children }: SyncProviderProps) {
 
   const handlePickOneAsteroid = useCallback(
     async (id: string | null) => {
-      const selectedAsteroid = Object.entries(allAsteroids[0]).filter(
-        (asteroid) => {
-          return asteroid[1].id === id;
-        }
-      )[0];
+      if (allAsteroids) {
+        const selectedAsteroid = Object.entries(allAsteroids[0]).filter(
+          (asteroid) => {
+            return asteroid[1].id === id;
+          }
+        )[0];
 
-      return setPickedAsteroid(selectedAsteroid[1]);
+        return setPickedAsteroid(selectedAsteroid[1]);
+      }
+
+      return null;
     },
     [allAsteroids]
   );

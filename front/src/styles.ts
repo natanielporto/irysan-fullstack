@@ -2,6 +2,19 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+export const BackgroundImage = styled.div<{ image: string }>`
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+  background-position: center;
+  height: 860px;
+  width: 1280px;
 `;
 
 export const TopSpan = styled.span`
